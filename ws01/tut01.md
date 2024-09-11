@@ -1,6 +1,6 @@
 # Hi!
 
-I am Peter, your co-tutor! My other co-tutor is not here today, but we got a sub.
+I am Peter, your co-tutor! My other co-tutor is Kaiqi!
 - graduated, working 
 - Did a bit of rust
 - crazy enough to build a webapp with it (with a cool group)
@@ -10,10 +10,12 @@ I am Peter, your co-tutor! My other co-tutor is not here today, but we got a sub
 - Rust syntax
 - immutability by default: is this a good idea?
   - How different languages deal with const
-- Basic types: i64, &str and its friends, -> Struct, Tuple build everything that isnt that
-- no NULL! YAAAAAY
-- no Exceptions! YAAAY (sorta)
+- Basic types: i64, &str and its friends, -> Struct, Tuple build everything that isn't that
+- no NULL! What is bad about this?
+- no Exceptions! YAAAY (sorta) What is bad about this?
 - Writing a program vs writing a robust program
+ - how does rust help us with that so far?
+ - how does it hinder us?
 
 # Workshops
 - a place for us to discuss things

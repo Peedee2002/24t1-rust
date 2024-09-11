@@ -1,4 +1,4 @@
-use bmp::{Image, Pixel};
+use bmp::{open, Image, Pixel};
 
 fn draw_pixel(mut image: Image, x: u32, y: u32, pixel: Pixel) -> Image {
     // technically a useless function and we should use the method instead
@@ -26,6 +26,10 @@ fn main() {
         size_x.parse().expect("size_x should be a number"),
         size_y.parse().expect("size_y should be a number")
     );
+
+    if open(path.as_str()).is_err_and(|e| e.kind.as_ref() != "BMP Error") {
+        panic!("the file you pointed to is not a bmp")
+    }
 
     image = match operation.as_str() {
         "pixel" => {
