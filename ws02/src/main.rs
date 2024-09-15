@@ -1,3 +1,4 @@
+use std::collections::HashMap;
 use std::error::Error;
 use std::path::Path;
 
@@ -80,6 +81,32 @@ fn main() -> Result<(), Box<dyn Error>> {
         .collect::<Result<_, _>>()?;
 
     println!("Entries: {entries:?}");
-
+    let vec= entries.iter().map(|entry|
+        (entry.station.as_str(), entry.time_period.as_str(), entry.entries_total.unwrap_or(0) + entry.exits_total.unwrap_or(0))
+    );
+    let mut map: HashMap<String, HashMap<String, i32>> = HashMap::new();
+    for (station, period, amount) in vec {
+        let year = &period[period.find("2").unwrap()..];
+        let year_map = match map.get_mut(year) {
+            Some(year_map) => year_map,
+            None => {
+                let new_map = HashMap::new();
+                map.insert(year.to_string(), new_map);
+                map.get_mut(year).unwrap()
+            }
+        };
+        year_map.insert(station.to_string(), amount + year_map.get(station).unwrap_or(&0));
+    }
+    for (year, values) in map {
+        let max = values.iter().reduce(|(prev_station, prev_amount), (curr_station, curr_amount)| {
+            if curr_amount > prev_amount { (curr_station, curr_amount) } else { (prev_station, prev_amount) }
+        }).unwrap();
+        let min = values.iter().reduce(|(prev_station, prev_amount), (curr_station, curr_amount)| {
+            if curr_amount < prev_amount { (curr_station, curr_amount) } else { (prev_station, prev_amount) }
+        }).unwrap();
+        println!("{}", year);
+        println!("Max station: {:?}", max);
+        println!("Min station: {:?}", min);
+    }
     Ok(())
 }
