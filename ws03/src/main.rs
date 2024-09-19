@@ -123,15 +123,14 @@ impl Controller for BufferEditor {
 }
 
 fn run_command(cmd: &str)  -> Result<(), Box<dyn Error>> {
-    let mut editor = BufferEditor {
-        buffer: Buffer::new()
-    };
     if cmd.starts_with("open") {
         run_game(
             &mut editor,
             GameSettings::new()
                 .tick_duration(Duration::from_millis(25))
         )?;
+    } else if cmd.starts_with("open_file") {
+
     } else {
         println!("Command not recognised!");
     }
@@ -145,14 +144,16 @@ use rustyline::Editor;
 fn main() -> Result<(), Box<dyn Error>> {
 
     println!("Welcome to BuffeRS. ");
-
+    let mut editor = BufferEditor {
+        buffer: Buffer::new()
+    };
     // `()` can be used when no completer is required
     let mut rl = Editor::<()>::new()?;
     loop {
         let readline = rl.readline(">> ");
         match readline {
             Ok(line) => {
-                run_command(&line)?;
+                run_command(&line, &mut editor)?;
                 rl.add_history_entry(line.as_str());
             },
             Err(ReadlineError::Interrupted) | Err(ReadlineError::Eof) => {

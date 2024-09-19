@@ -7,15 +7,6 @@ fn draw_pixel(path: &str) {
 }
 
 fn draw_nth_rows(path: &str) {
-    let mut image = Image::new(100, 100);
-    for column in 0..100 {
-        if column % 2 == 0 {
-            for row in 0..100 {
-                image.set_pixel(row, column, Pixel::new(0, 255, 0));
-            }
-        }
-    }
-    image.save(path).expect("This should save correctly."); 
 }
 
 fn main() {
@@ -24,8 +15,6 @@ fn main() {
 
     if operation.as_str() == "pixel" {
         draw_pixel(path.as_str());
-    } else if operation.as_str() == "tutor_excersise" {
-        draw_nth_rows(path.as_str());
     } else {
         eprintln!("The operation {operation} was not recognised!");
     }
