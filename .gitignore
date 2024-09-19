@@ -2,3 +2,6 @@ target
 
 # no need for beautiful art
 *.bmp
+
+# mac is annoying
+.DS_store
