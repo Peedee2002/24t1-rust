@@ -1,0 +1,13 @@
+- Assignment due week 7 - this is the last class before the due date
+- Enums 
+    - sum type
+    - product type
+    - this can be used to "enumerate" or act differently for every action, somewhat like a generic
+- Traits
+    - this asserts that you need a type which implemnents something
+    - common to run into `Sized` => what is sized?
+    - most intuitively extensible by others
+- Generics
+    - give a type, which is used internally and wrapped somehow
+    - most similar to other languages, we won't find much surprises here
+    

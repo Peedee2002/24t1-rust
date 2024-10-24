@@ -1,3 +1,5 @@
+use std::fmt::Write;
+
 use bmp::{Image, Pixel};
 
 fn draw_pixel(path: &str) {
@@ -18,4 +20,18 @@ fn main() {
     } else {
         eprintln!("The operation {operation} was not recognised!");
     }
+}
+
+trait Trait {
+}
+
+struct Item1;
+struct Item2(i32);
+fn main() {
+    let item = Box::new(Item2(2));
+}
+
+struct Item3<U>
+where U: Write {
+    field: Vec<U>
 }
